@@ -11,7 +11,7 @@
 	<groupId>com.ahl</groupId>
 	<artifactId>annahockeyleague</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>annahockeyleague</name>
+	<name>AnnaHockeyLeague</name>
 	<description>Anna Hockey League Website</description>
 	<properties>
 		<java.version>17</java.version>
