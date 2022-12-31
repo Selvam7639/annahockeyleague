@@ -1,9 +1,7 @@
 package com.ahl.annahockeyleague.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +11,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@Table(name = "matches")
 public class Match {
 
     @Id
@@ -28,4 +27,13 @@ public class Match {
     private Date date;
     private Timestamp timestamp;
     private Date createdDate;
+
+    @ManyToOne
+    @JoinColumn(name = "tournament_id",referencedColumnName = "id", nullable = false)
+    private Tournament tournament;
+
+    @JsonBackReference
+    public Tournament getTournament(){
+        return this.tournament;
+    }
 }

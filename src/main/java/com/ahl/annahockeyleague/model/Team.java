@@ -1,9 +1,8 @@
 package com.ahl.annahockeyleague.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,4 +15,14 @@ public class Team {
     private int id;
     private String name;
     private String slogan;
+
+    @ManyToOne
+    @JoinColumn(name = "tournament_id",referencedColumnName = "id", nullable = false)
+    private Tournament tournament;
+
+    @JsonBackReference
+    public Tournament getTournament(){
+        return this.tournament;
+    }
+
 }

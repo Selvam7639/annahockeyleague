@@ -1,11 +1,11 @@
 package com.ahl.annahockeyleague.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,4 +19,20 @@ public class Tournament {
     private long year;
     private String isActive;
     private String tagLine;
+
+    @OneToMany(mappedBy = "tournament")
+    private List<Team> teams;
+
+    @JsonManagedReference
+    public List<Team> getTeams(){
+        return this.teams;
+    }
+
+    @OneToMany(mappedBy = "tournament")
+    private List<Match> matches;
+
+    @JsonManagedReference
+    public List<Match> getMatches(){
+        return this.matches;
+    }
 }
